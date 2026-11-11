@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Frontend Develop</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--glass:rgba(255,255,255,.42);--bd:rgba(255,255,255,.7);--tx:#12162b;--mu:#4d5575;--ac:#5b6cff;--ok:#16a34a;--no:#dc2626;--ov:rgba(235,240,255,.45);--cd:#3a3f66;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--glass:rgba(24,28,54,.5);--bd:rgba(255,255,255,.14);--tx:#eef0ff;--mu:#a3a9cc;--ov:rgba(8,10,24,.55);--cd:#7f89c9}}
+:root[data-theme="dark"]{--glass:rgba(24,28,54,.5);--bd:rgba(255,255,255,.14);--tx:#eef0ff;--mu:#a3a9cc;--ov:rgba(8,10,24,.55);--cd:#7f89c9}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tx);background:#10142b;min-height:100vh;padding-bottom:92px}
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:linear-gradient(135deg,#2b3cff,#8a2be2 55%,#ff4fa3)}
+.bg pre{margin:0;padding:20px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;color:rgba(255,255,255,.55);filter:blur(3px);transform:scale(1.1)}
+.bg::after{content:"";position:absolute;inset:0;background:var(--ov);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.win,nav,button,.btn,input{backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%)}
+.win{background:var(--glass);border:1px solid var(--bd);border-radius:22px;padding:16px;margin:12px;box-shadow:0 10px 32px rgba(0,0,0,.18)}
+.top{display:flex;justify-content:space-between;align-items:center;margin:12px}
+.brand{display:flex;gap:10px;align-items:center;font-weight:800;font-size:17px}.brand svg.logo{width:34px;height:34px}
+.row{display:flex;gap:8px;align-items:center}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;flex:none}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--glass);color:var(--tx);border-radius:14px;padding:9px 14px;text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.pri{background:var(--ac);color:#fff;border-color:transparent}button:disabled{opacity:.45}
+.ib{padding:9px}
+nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;background:var(--glass);border:1px solid var(--bd);border-radius:22px;padding:6px}
+nav button{border:0;background:none;flex:1;flex-direction:column;font-size:11px;padding:8px 4px;gap:3px;justify-content:center;backdrop-filter:none}nav button.on{color:var(--ac);font-weight:700}
+h2,h3,h4{margin:.7em 0 .3em}p,li{line-height:1.6}.mu{color:var(--mu);font-size:14px}
+pre.c{background:rgba(5,8,25,.65);color:#e6e9ff;padding:12px;border-radius:14px;overflow-x:auto;font-size:13px}
+code{background:rgba(120,130,200,.3);padding:1px 6px;border-radius:6px}
+.lock{opacity:.6}.bar{height:8px;border-radius:8px;background:rgba(120,130,190,.3);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),#ff4fa3)}
+.opt{width:100%;margin:6px 0;text-align:left}.ok{color:var(--ok)}.no{color:var(--no)}.big{font-size:36px;font-weight:800}
+input{width:100%;font:inherit;padding:10px;border-radius:12px;border:1px solid var(--bd);background:var(--glass);color:var(--tx)}
+.tag{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--ac);color:#fff;margin-left:6px}
+.vid{aspect-ratio:16/9;border-radius:16px;background:rgba(5,8,25,.55);display:grid;place-items:center;color:#fff;text-align:center;margin:8px 0}
+</style>
+</head>
+<body>
+<div class="bg"><pre id="code"></pre></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#ff4fa3"/></linearGradient>
+<symbol id="logo" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="url(#lg)"/><path d="M19 17l-7 7 7 7M29 17l7 7-7 7M26 14l-4 20" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+<symbol id="gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+<symbol id="coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></symbol>
+<symbol id="cup" viewBox="0 0 24 24"><path d="M6 9H4a2 2 0 0 1-2-2V5h4M18 9h2a2 2 0 0 0 2-2V5h-4M6 3h12v6a6 6 0 0 1-12 0zM12 15v4M8 21h8"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></symbol>
+<symbol id="vol" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 0 1 0 6"/></symbol>
+<symbol id="mute" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM17 9l5 6M22 9l-5 6"/></symbol>
+<symbol id="play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+<symbol id="usb" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="9" rx="1"/><path d="M10 6h.01M14 6h.01M9 11v11h6V11"/></symbol>
+<symbol id="spk" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="15" r="3"/><circle cx="12" cy="7" r="1"/></symbol>
+<symbol id="mouse" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/></symbol>
+<symbol id="kbd" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+<symbol id="edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4"/></symbol>
+<symbol id="link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></symbol>
+</defs></svg>
+<div class="top"><div class="brand"><svg class="logo"><use href="#logo"/></svg>Frontend Develop</div><div class="row"><button class="ib" id="snd"></button><button class="ib" id="thm"><svg class="i"><use href="#sun"/></svg></button></div></div>
+<main id="app"></main>
+<nav id="nav"></nav>
+<script>
+function ic(n,s){return '<svg class="i"'+(s?' style="width:'+s+'px;height:'+s+'px"':'')+'><use href="#'+n+'"/></svg>'}
+document.getElementById("code").textContent=Array(14).join('<!DOCTYPE html>\n<html lang="uz">\n<head>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body>\n  <h2>Salom, dunyo!</h2>\n  <p>Frontend oʻrganamiz</p>\n</body>\n</html>\nbody { display:flex; color:#fff; }\n');
+var tg=window.Telegram&&window.Telegram.WebApp;if(tg){try{tg.ready();tg.expand()}catch(e){}}
+var TU=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user)||{id:100200300,first_name:"Mehmon",username:"demo_user"};
+var BOT="Fronted_uzb_bot",ADMIN="muhammadjonov001";
+var DEMOADMIN=!tg&&location.hash==="#admin";
+var S={passed:{},coins:0,invited:0,lastTest:"",theme:"",mute:false,read:{}};
+try{var s0=localStorage.getItem("fd_state");if(s0)Object.assign(S,JSON.parse(s0))}catch(e){}
+function save(){try{localStorage.setItem("fd_state",JSON.stringify(S))}catch(e){}}
+function today(){return new Date().toISOString().slice(0,10)}
+// metall bosish ovozi: past "tak" + inharmonik yuqori qismlar + shovqin chaqnashi
+var AC;function metal(){if(S.mute)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();var t=AC.currentTime,m=AC.createGain();m.gain.value=.5;m.connect(AC.destination);
+[[2140,"square",.05,.10],[3310,"triangle",.05,.08],[5230,"square",.025,.06],[190,"sine",.12,.05]].forEach(function(p){var o=AC.createOscillator(),g=AC.createGain();o.type=p[1];o.frequency.value=p[0];g.gain.setValueAtTime(p[2],t);g.gain.exponentialRampToValueAtTime(.0001,t+p[3]);o.connect(g);g.connect(m);o.start(t);o.stop(t+p[3]+.02)});
+var n=AC.createBuffer(1,AC.sampleRate*.03,AC.sampleRate),d=n.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+var ns=AC.createBufferSource(),f=AC.createBiquadFilter(),ng=AC.createGain();ns.buffer=n;f.type="highpass";f.frequency.value=4000;ng.gain.value=.25;ns.connect(f);f.connect(ng);ng.connect(m);ns.start(t)}catch(e){}}
+document.addEventListener("click",function(e){if(e.target.closest("button,.btn"))metal()});
+function applyTheme(){if(S.theme)document.documentElement.setAttribute("data-theme",S.theme)}applyTheme();
+function isDark(){return S.theme?S.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches}
+function topIcons(){snd.innerHTML=ic(S.mute?"mute":"vol");thm.innerHTML=ic(isDark()?"sun":"sun")}
+thm.onclick=function(){S.theme=isDark()?"light":"dark";applyTheme();save()};
+snd.onclick=function(){S.mute=!S.mute;topIcons();save()};topIcons();
+// 30 ta dars
+var LESSONS=[["HTML asoslari: tuzilma, p, h2–h4, hr, br","HTML"],["Roʻyxatlar: ul, ol, li","HTML"],["Havolalar va rasmlar: a, img","HTML"],["Jadvallar: table, tr, td","HTML"],["Formalar: form, input, button","HTML"],["Semantik teglar: header, main, footer","HTML"],
+["CSS kirish: selektor, xossa, qiymat","CSS"],["Ranglar, shriftlar va matn","CSS"],["Box model: margin, padding, border","CSS"],["display va position","CSS"],["Flexbox","CSS"],["Grid","CSS"],["Responsive va media query","CSS"],["Transition va animatsiya","CSS"],["CSS oʻzgaruvchilar va gradient","CSS"],
+["Git va GitHub","Git"],
+["JS: oʻzgaruvchilar va turlar","JS"],["JS: shartlar va sikllar","JS"],["JS: funksiyalar","JS"],["JS: massiv va obyekt","JS"],["JS: DOM","JS"],["JS: hodisalar","JS"],["JS: formalar bilan ishlash","JS"],["JS: localStorage","JS"],["JS: fetch va API","JS"],["JS: async/await","JS"],["JS: ES6+ va modullar","JS"],
+["Loyiha: Todo ilova","Loyiha"],["Loyiha: portfolio sayt","Loyiha"],["Deploy va yakuniy imtihon","Loyiha"]];
+function esc(x){return x.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function c(x){return "<pre class='c'>"+esc(x)+"</pre>"}
+function L1(){return "<h2>Frontend nima?</h2><p>Frontend — foydalanuvchi brauzerda koʻradigan va bosadigan qism. U uchta til bilan quriladi: <b>HTML</b> (mazmun va tuzilma), <b>CSS</b> (koʻrinish), <b>JavaScript</b> (harakat). Bu darsda HTML va CSS fayllari qanday birga ishlashini oʻrganamiz.</p>"+
+"<h3>1) Papka va fayllar</h3><p>Loyiha uchun papka oching, ichida ikkita fayl boʻlsin:</p>"+c("mening-saytim/\n  index.html   <- sahifa mazmuni\n  style.css    <- dizayn")+"<p><code>index.html</code> — brauzer saytni ochganda birinchi oʻqiydigan fayl. Nomi aynan shunday yoziladi (kichik harflar).</p>"+
+"<h3>2) HTML hujjat skeleti</h3>"+c('<!DOCTYPE html>\n<html lang="uz">\n<head>\n  <meta charset="utf-8">\n  <title>Mening saytim</title>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body>\n  <h2>Salom!</h2>\n</body>\n</html>')+
+"<p><code>&lt;!DOCTYPE html&gt;</code> — zamonaviy HTML ekanini bildiradi. <code>lang=\"uz\"</code> — til. <code>&lt;head&gt;</code> — sahifa haqida maʼlumot (koʻrinmaydi). <code>&lt;meta charset&gt;</code> — oʻ, gʻ, sh harflari toʻgʻri chiqishi uchun. <code>&lt;title&gt;</code> — brauzer tabidagi nom. <code>&lt;body&gt;</code> — ekranda koʻrinadigan hamma narsa.</p>"+
+"<h3>3) index.html va style.css ni ulash</h3><p>Ulash <code>&lt;head&gt;</code> ichidagi <code>&lt;link&gt;</code> orqali boʻladi. <code>href</code> — CSS fayl yoʻli. Fayl boshqa papkada yoki nomi xato boʻlsa, dizayn ishlamaydi.</p>"+c("/* style.css */\nbody { background: #eef; }\nh2   { color: royalblue; }")+
+"<p>CSS qoidasi: <b>selektor</b> (h2) { <b>xossa</b>: <b>qiymat</b>; }</p>"+
+"<h3>4) Paragraf: &lt;p&gt;</h3>"+c("<p>Bu bir paragraf matni.</p>")+"<p class='mu'>Har bir &lt;p&gt; yopilishi shart: &lt;/p&gt;.</p>"+
+"<h3>5) Sarlavhalar: h2, h3, h4</h3><p>Raqam kichik boʻlsa sarlavha muhimroq va kattaroq. Sarlavhani shunchaki katta yozuv uchun emas, sahifa tuzilmasi va qidiruv tizimlari uchun ishlating.</p>"+c("<h2>Asosiy boʻlim</h2>\n<h3>Ichki boʻlim</h3>\n<h4>Mayda boʻlim</h4>")+"<h2>H2 namuna</h2><h3>H3 namuna</h3><h4>H4 namuna</h4>"+
+"<h3>6) &lt;hr&gt; va &lt;br&gt;</h3><p><code>&lt;hr&gt;</code> — boʻlimlar orasida gorizontal chiziq. <code>&lt;br&gt;</code> — matnni yangi qatorga tushiradi. Ikkalasida yopuvchi teg yoʻq.</p>"+c("Birinchi qator<br>Ikkinchi qator\n<hr>")+"Birinchi qator<br>Ikkinchi qator<hr>"+
+"<h3>7) Izohlar</h3>"+c("<!-- HTML izohi -->\n/* CSS izohi */")+
+"<h3>8) Koʻp uchraydigan xatolar</h3><p>1) &lt;/p&gt; ni unutish. 2) Fayl nomini xato yozish (Index.html). 3) &lt;link&gt; ni &lt;body&gt; ga qoʻyish. 4) CSS da nuqtali vergul (;) ni tashlab ketish.</p>"+
+"<h3>9) Amaliy topshiriq</h3><p>Oʻz papkangizda index.html va style.css yarating. Sahifada ism (h2), qiziqish (h3), 2 ta paragraf, hr va br ishlating. CSS da fon va sarlavha rangini oʻzgartiring. Test topshirishdan oldin buni bajaring.</p>"+
+"<h3>10) VS Code oʻrnatish</h3><p>Kodni VS Code da yozamiz. Videoni koʻrib, dasturni oʻrnating va oʻzingizga yuklab oling.</p><div class='vid'><div>"+ic("play",44)+"<br>VS Code oʻrnatish videosi<br><span class='mu' style='color:#cbd0f5'>Admin yuklagach shu yerda chiqadi</span></div></div><a class='btn pri' target='_blank' rel='noopener' href='https://code.visualstudio.com/download'>"+ic("dl")+"VS Code yuklab olish</a>"}
+var Q=[["Frontend nimani yaratadi?",["Brauzerda koʻrinadigan qismni","Server bazasini","Operatsion tizimni"],0],
+["Mazmun, koʻrinish va harakatni mos ravishda kim boshqaradi?",["HTML, JS, CSS","HTML, CSS, JS","CSS, HTML, JS"],1],
+["Brauzer sayt ochilganda odatda qaysi faylni birinchi oʻqiydi?",["style.css","index.html","script.js"],1],
+["Hujjat turini bildiruvchi birinchi qator qaysi?",["<!DOCTYPE html>","<html5>","<head>"],0],
+["<title> qayerga yoziladi?",["<body> ichiga","<p> ichiga","<head> ichiga"],2],
+["Ekranda koʻrinadigan kontent qaysi teg ichida boʻladi?",["<head>","<meta>","<body>"],2],
+["CSS ni toʻgʻri ulash qaysi?",["<css src=\"style.css\">","<link rel=\"stylesheet\" href=\"style.css\">","<style href=\"style.css\">"],1],
+["style.css boshqa papkada qolsa nima boʻladi?",["Brauzer oʻzi topadi","Sahifa oʻchadi","Dizayn ishlamaydi (yoʻl topilmaydi)"],2],
+["<p>Salom<br>Dunyo</p> qanday koʻrinadi?",["Bir qatorda: SalomDunyo","Ikki qatorda","Orasida chiziq bilan"],1],
+["<hr> nima qiladi?",["Qator tashlaydi","Sarlavha yaratadi","Gorizontal chiziq chizadi"],2],
+["Qaysi teg yopuvchi tegsiz yoziladi?",["<br>","<p>","<h3>"],0],
+["h2, h3, h4 ichida qaysi biri eng katta/muhim?",["h4","h3","h2"],2],
+["Sarlavhani nega faqat kattalashtirish uchun ishlatmaymiz?",["Chunki h tegi sekin ishlaydi","Tuzilma va qidiruv uchun maʼno beradi","Chunki u ranglanmaydi"],1],
+["HTML izohi qaysi?",["// izoh","<!-- izoh -->","/* izoh */"],1],
+["CSS izohi qaysi?",["/* izoh */","<!-- izoh -->","# izoh"],0],
+["h2 { color: red; } da \"color\" nima?",["Selektor","Qiymat","Xossa"],2],
+["<p>Salom<p>Dunyo kodidagi xato nima?",["Yopuvchi </p> teglar yoʻq","Xato yoʻq","p tegi mavjud emas"],0],
+["Serverlarda Index.html va index.html haqida toʻgʻrisi?",["Doim bir xil","Farq qilishi mumkin","Faqat Windowsda farq qiladi"],1],
+["lang=\"uz\" nimani bildiradi?",["Rangni","Faylni ulaydi","Sahifa tilini"],2],
+["<meta charset=\"utf-8\"> nima uchun kerak?",["Rasm tezligi uchun","Oʻ, gʻ, sh harflari toʻgʻri koʻrinishi uchun","Sahifani himoyalash uchun"],1]];
+var tab="home",quiz=null;
+var TABS=[["home","book","Darslar"],["ref","gift","Referal"],["coin","coin","Coin"],["top","cup","Reyting"]];
+if(TU.username===ADMIN||DEMOADMIN)TABS.push(["adm","shield","Admin"]);
+function nav_(){var t0=tab==="lesson"||tab==="quiz"?"home":tab;nav.innerHTML=TABS.map(function(t){return "<button class='"+(t0===t[0]?"on":"")+"' onclick=\"go('"+t[0]+"')\">"+ic(t[1])+t[2]+"</button>"}).join("")}
+function go(t){tab=t;quiz=null;render();scrollTo(0,0)}
+function unlocked(i){return i===0||!!S.passed[i-1]}
+function render(){nav_();var h="";
+if(tab==="home"){var done=Object.keys(S.passed).length,need=S.lastTest!==today()&&done>0;
+ h+="<div class='win'><b>Salom, "+esc(TU.first_name)+"!</b><div class='bar' style='margin:10px 0'><i style='width:"+Math.round(done/30*100)+"%'></i></div><span class='mu'>"+done+"/30 dars tugatildi</span></div>";
+ if(need)h+="<div class='win'><b>"+ic("edit")+" Bugungi majburiy test</b><p class='mu'>Oʻtilgan mavzulardan 20 ta savol. Topshirmaguncha yangi dars ochilmaydi.</p><button class='pri' onclick='startQ(\"daily\")'>Testni boshlash</button></div>";
+ LESSONS.forEach(function(l,i){var u=unlocked(i)&&!need;
+  h+="<div class='win "+(u?"":"lock")+"'><b>"+(i+1)+". "+l[0]+"</b><span class='tag'>"+l[1]+"</span> "+(S.passed[i]?"<span class='ok'>"+ic("check")+"</span>":(u?"":ic("lock")))+
+  (i===0&&u?"<div class='row' style='margin-top:10px'><button class='pri' onclick='tab=\"lesson\";render();scrollTo(0,0)'>Oʻqish</button><button onclick='tryTest()'>Test (20 ta)</button></div>":(u?"<div class='mu'>Mazmuni tez orada qoʻshiladi</div>":""))+"</div>"});}
+else if(tab==="lesson"){h="<div class='win'>"+L1()+"<hr><button class='pri' onclick='S.read[0]=1;save();go(\"home\")'>Tushundim, ortga</button></div>"}
+else if(tab==="quiz"){h=quizHTML()}
+else if(tab==="ref"){var link="https://t.me/"+BOT+"?start=ref_"+TU.id;
+ h="<div class='win'><h3>"+ic("gift")+" Doʻst taklif qil: +2 coin</h3><p class='mu'>Doʻsting havolangdan botga kirib roʻyxatdan oʻtsa, coin beriladi.</p><input readonly value='"+link+"' onclick='this.select()'><div class='row' style='margin-top:10px'><button class='pri' onclick='cp(\""+link+"\")'>"+ic("link")+"Nusxalash</button><button onclick='shr(\""+link+"\")'>Ulashish</button></div><p>Taklif qilinganlar: <b>"+S.invited+"</b></p></div>"}
+else if(tab==="coin"){var R=[[20,"usb","16GB fleshka"],[40,"spk","Mini kolonka"],[80,"mouse","Gamer sichqoncha"],[100,"kbd","Klaviatura + sumka + futbolka"]];
+ h="<div class='win'><div class='big'>"+ic("coin",32)+" "+S.coins+"</div><span class='mu'>Doʻst: +2 · Oyning eng zoʻr oʻquvchisi: +5</span></div>"+R.map(function(r){return "<div class='win'><b>"+ic(r[1],24)+" "+r[2]+"</b> — "+r[0]+" coin<div class='bar' style='margin-top:8px'><i style='width:"+Math.min(100,S.coins/r[0]*100)+"%'></i></div>"+(S.coins>=r[0]?"<p class='ok'>Sovgʻa uchun adminga yozing: @"+ADMIN+"</p>":"")+"</div>"}).join("")}
+else if(tab==="top"){h="<div class='win'><h3>"+ic("cup")+" Oy reytingi</h3><p class='mu'>Oy oxirida №1 oʻquvchi +5 coin oladi. Reyting server ulangach haqiqiy oʻquvchilar bilan toʻladi.</p><p>1. "+esc(TU.first_name)+" — "+Object.keys(S.passed).length+" dars</p></div>"}
+else if(tab==="adm"){h="<div class='win'><h3>"+ic("shield")+" Admin panel</h3><p class='mu'>@"+esc(TU.username)+". Server ulangach: foydalanuvchilar roʻyxati, referallar, coin berish, oy gʻolibi va video yuklash shu yerda boʻladi.</p></div>"}
+app.innerHTML=h}
+function tryTest(){if(!S.read[0]){alert("Avval darsni oʻqing.");return}startQ(0)}
+function startQ(k){quiz={k:k,qs:Q.slice().sort(function(){return Math.random()-.5}),i:0,a:[],done:false};tab="quiz";render()}
+function quizHTML(){var z=quiz;if(z.done){var ok=z.pct>=70;return "<div class='win' style='text-align:center'><div class='big "+(ok?"ok":"no")+"'>"+z.pct+"%</div><p>"+(ok?"Ajoyib! Keyingi dars ochildi.":"70% dan kam. 1-darsni qayta oʻqing.")+"</p>"+(ok?"<button class='pri' onclick='go(\"home\")'>Davom etish</button>":"<button class='pri' onclick='S.read[0]=0;save();go(\"home\")'>Darsni qayta oʻqish</button>")+"</div>"}
+ var q=z.qs[z.i];return "<div class='win'><span class='mu'>Savol "+(z.i+1)+"/20</span><div class='bar' style='margin:8px 0'><i style='width:"+(z.i/20*100)+"%'></i></div><h3>"+esc(q[0])+"</h3>"+q[1].map(function(o,j){return "<button class='opt' onclick='ans("+j+")'>"+esc(o)+"</button>"}).join("")+"</div>"}
+function ans(j){var z=quiz;z.a.push(z.qs[z.i][2]===j);z.i++;if(z.i>=20){z.pct=Math.round(z.a.filter(Boolean).length/20*100);z.done=true;S.lastTest=today();if(z.pct>=70&&z.k===0)S.passed[0]=1;save()}render()}
+function cp(t){try{navigator.clipboard.writeText(t)}catch(e){}}
+function shr(t){var u="https://t.me/share/url?url="+encodeURIComponent(t)+"&text="+encodeURIComponent("Frontend oʻrganamiz!");if(tg&&tg.openTelegramLink)tg.openTelegramLink(u);else window.open(u,"_blank")}
+setInterval(function(){if(tab==="coin"||tab==="ref"){try{var s=localStorage.getItem("fd_state");if(s){Object.assign(S,JSON.parse(s));render()}}catch(e){}}},30000);
+render();
+</script>
+</body>
+</html>
